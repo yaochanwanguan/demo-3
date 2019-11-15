@@ -1,4 +1,4 @@
-package com.datangedu.cn;
+package com.datangedu.cn;//服务端运行文件
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
