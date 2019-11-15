@@ -16,7 +16,6 @@ public interface SysUserService {
 	public List<OrderList> getOrderUserInfoById();
 	int setOrderUserInfoById();
 	public List<Administrator> setUserlogin(HttpServletRequest request);
-	public int Setusernumber(HttpServletRequest request);
 	public void saveUserImg(BuyUser user) throws Exception;
 	public int setUserRegion(HttpServletRequest request);
 	public List<Administrator> findpassword(HttpServletRequest request);

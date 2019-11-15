@@ -12,21 +12,17 @@ public interface ProviderImgMapper {
 
     int deleteByExample(ProviderImgExample example);
 
-    int deleteByPrimaryKey(String id);
-
     int insert(ProviderImg record);
 
     int insertSelective(ProviderImg record);
 
-    List<ProviderImg> selectByExample(ProviderImgExample example);
+    List<ProviderImg> selectByExampleWithBLOBs(ProviderImgExample example);
 
-    ProviderImg selectByPrimaryKey(String id);
+    List<ProviderImg> selectByExample(ProviderImgExample example);
 
     int updateByExampleSelective(@Param("record") ProviderImg record, @Param("example") ProviderImgExample example);
 
+    int updateByExampleWithBLOBs(@Param("record") ProviderImg record, @Param("example") ProviderImgExample example);
+
     int updateByExample(@Param("record") ProviderImg record, @Param("example") ProviderImgExample example);
-
-    int updateByPrimaryKeySelective(ProviderImg record);
-
-    int updateByPrimaryKey(ProviderImg record);
 }

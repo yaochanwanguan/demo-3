@@ -13,7 +13,9 @@
     <result column="PROVIDER_NAME" jdbcType="VARCHAR" property="providerName" />
     <result column="RECOMMEND" jdbcType="INTEGER" property="recommend" />
     <result column="NEW_ESTABLISH" jdbcType="INTEGER" property="newEstablish" />
-    <result column="PRODUCT_PICTURE" jdbcType="VARCHAR" property="productPicture" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.datangedu.cn.model.sysUser.ServingProduct">
+    <result column="PRODUCT_PICTURE" jdbcType="LONGVARBINARY" property="productPicture" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,8 +77,27 @@
   </sql>
   <sql id="Base_Column_List">
     ID, SERVICE_NAME, SERVICE_INFO, UNIT_PRICE, SALES_VOLUME, STATUS, CREATE_TIME, PROVIDER_ID, 
-    PROVIDER_NAME, RECOMMEND, NEW_ESTABLISH, PRODUCT_PICTURE
+    PROVIDER_NAME, RECOMMEND, NEW_ESTABLISH
   </sql>
+  <sql id="Blob_Column_List">
+    PRODUCT_PICTURE
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.datangedu.cn.model.sysUser.ServingProductExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from serving_product
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" parameterType="com.datangedu.cn.model.sysUser.ServingProductExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -91,9 +112,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from serving_product
     where ID = #{id,jdbcType=VARCHAR}
   </select>
@@ -116,7 +139,7 @@
     values (#{id,jdbcType=VARCHAR}, #{serviceName,jdbcType=VARCHAR}, #{serviceInfo,jdbcType=VARCHAR}, 
       #{unitPrice,jdbcType=INTEGER}, #{salesVolume,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{providerId,jdbcType=VARCHAR}, #{providerName,jdbcType=VARCHAR}, 
-      #{recommend,jdbcType=INTEGER}, #{newEstablish,jdbcType=INTEGER}, #{productPicture,jdbcType=VARCHAR}
+      #{recommend,jdbcType=INTEGER}, #{newEstablish,jdbcType=INTEGER}, #{productPicture,jdbcType=LONGVARBINARY}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.datangedu.cn.model.sysUser.ServingProduct">
@@ -194,7 +217,7 @@
         #{newEstablish,jdbcType=INTEGER},
       </if>
       <if test="productPicture != null">
-        #{productPicture,jdbcType=VARCHAR},
+        #{productPicture,jdbcType=LONGVARBINARY},
       </if>
     </trim>
   </insert>
@@ -241,9 +264,27 @@
         NEW_ESTABLISH = #{record.newEstablish,jdbcType=INTEGER},
       </if>
       <if test="record.productPicture != null">
-        PRODUCT_PICTURE = #{record.productPicture,jdbcType=VARCHAR},
+        PRODUCT_PICTURE = #{record.productPicture,jdbcType=LONGVARBINARY},
       </if>
     </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update serving_product
+    set ID = #{record.id,jdbcType=VARCHAR},
+      SERVICE_NAME = #{record.serviceName,jdbcType=VARCHAR},
+      SERVICE_INFO = #{record.serviceInfo,jdbcType=VARCHAR},
+      UNIT_PRICE = #{record.unitPrice,jdbcType=INTEGER},
+      SALES_VOLUME = #{record.salesVolume,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      PROVIDER_ID = #{record.providerId,jdbcType=VARCHAR},
+      PROVIDER_NAME = #{record.providerName,jdbcType=VARCHAR},
+      RECOMMEND = #{record.recommend,jdbcType=INTEGER},
+      NEW_ESTABLISH = #{record.newEstablish,jdbcType=INTEGER},
+      PRODUCT_PICTURE = #{record.productPicture,jdbcType=LONGVARBINARY}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -260,8 +301,7 @@
       PROVIDER_ID = #{record.providerId,jdbcType=VARCHAR},
       PROVIDER_NAME = #{record.providerName,jdbcType=VARCHAR},
       RECOMMEND = #{record.recommend,jdbcType=INTEGER},
-      NEW_ESTABLISH = #{record.newEstablish,jdbcType=INTEGER},
-      PRODUCT_PICTURE = #{record.productPicture,jdbcType=VARCHAR}
+      NEW_ESTABLISH = #{record.newEstablish,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -300,9 +340,24 @@
         NEW_ESTABLISH = #{newEstablish,jdbcType=INTEGER},
       </if>
       <if test="productPicture != null">
-        PRODUCT_PICTURE = #{productPicture,jdbcType=VARCHAR},
+        PRODUCT_PICTURE = #{productPicture,jdbcType=LONGVARBINARY},
       </if>
     </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.datangedu.cn.model.sysUser.ServingProduct">
+    update serving_product
+    set SERVICE_NAME = #{serviceName,jdbcType=VARCHAR},
+      SERVICE_INFO = #{serviceInfo,jdbcType=VARCHAR},
+      UNIT_PRICE = #{unitPrice,jdbcType=INTEGER},
+      SALES_VOLUME = #{salesVolume,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      PROVIDER_ID = #{providerId,jdbcType=VARCHAR},
+      PROVIDER_NAME = #{providerName,jdbcType=VARCHAR},
+      RECOMMEND = #{recommend,jdbcType=INTEGER},
+      NEW_ESTABLISH = #{newEstablish,jdbcType=INTEGER},
+      PRODUCT_PICTURE = #{productPicture,jdbcType=LONGVARBINARY}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.datangedu.cn.model.sysUser.ServingProduct">
@@ -316,8 +371,7 @@
       PROVIDER_ID = #{providerId,jdbcType=VARCHAR},
       PROVIDER_NAME = #{providerName,jdbcType=VARCHAR},
       RECOMMEND = #{recommend,jdbcType=INTEGER},
-      NEW_ESTABLISH = #{newEstablish,jdbcType=INTEGER},
-      PRODUCT_PICTURE = #{productPicture,jdbcType=VARCHAR}
+      NEW_ESTABLISH = #{newEstablish,jdbcType=INTEGER}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 </mapper>

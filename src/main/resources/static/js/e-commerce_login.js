@@ -13,6 +13,7 @@ $(".login-btn").on("click", function(){
 		   },
 		   dataType:"json",
 		   success:function(data){
+			   
 			   console.log("成功后返回的数据",data);
 			   if(data.adm=="登陆成功"){
 				  location.href="redirect?page=e-commerce_product.html"

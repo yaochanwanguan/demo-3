@@ -3,6 +3,7 @@ package com.datangedu.cn.service.lmpl;
 import java.util.List;
 
 
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.swing.plaf.synth.Region;
@@ -58,7 +59,7 @@ public class SysUserServicelmpl implements SysUserService {
 		orderList.setId("1");
 		return orderListMapper.insert(orderList);
 	}
-
+//登陆
 	@Override
 	public List<Administrator> setUserlogin(HttpServletRequest request) {
 		// TODO Auto-generated method stub
@@ -68,23 +69,13 @@ public class SysUserServicelmpl implements SysUserService {
 		/*
 		 * System.out.println("电话号为："+cellphone); System.out.println("密码为："+password);
 		 */
-		AdministratorExample administrator = new AdministratorExample();
-		AdministratorExample.Criteria criteria = administrator.createCriteria();
+		AdministratorExample administratorExample = new AdministratorExample();
+		AdministratorExample.Criteria criteria = administratorExample.createCriteria();
 		criteria.andCellphoneEqualTo(cellphone);
-		criteria.andPasswordEqualTo(request.getParameter("password"));
+		criteria.andPasswordEqualTo(MD5Util.getMD5(request.getParameter("password").getBytes()));
 
-		return administratorMapper.selectByExample(administrator);
+		return administratorMapper.selectByExample(administratorExample);
 	}
-
-	@Override
-	public int Setusernumber(HttpServletRequest request) {
-		ProviderImg providerImg = new ProviderImg();
-		providerImg.setId(request.getParameter("service_id"));
-		providerImg.setBuyNum(Integer.parseInt(request.getParameter("buy_num")));
-
-		return providerMapper.updateByPrimaryKeySelective(providerImg);
-	}
-
 	@Override
 	public void saveUserImg(BuyUser user) throws Exception {
 		int i = buyUserMapper.saveUserImg(user);

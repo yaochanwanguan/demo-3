@@ -18,15 +18,21 @@ public interface ServingProductMapper {
 
     int insertSelective(ServingProduct record);
 
+    List<ServingProduct> selectByExampleWithBLOBs(ServingProductExample example);
+
     List<ServingProduct> selectByExample(ServingProductExample example);
 
     ServingProduct selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") ServingProduct record, @Param("example") ServingProductExample example);
 
+    int updateByExampleWithBLOBs(@Param("record") ServingProduct record, @Param("example") ServingProductExample example);
+
     int updateByExample(@Param("record") ServingProduct record, @Param("example") ServingProductExample example);
 
     int updateByPrimaryKeySelective(ServingProduct record);
+
+    int updateByPrimaryKeyWithBLOBs(ServingProduct record);
 
     int updateByPrimaryKey(ServingProduct record);
 }

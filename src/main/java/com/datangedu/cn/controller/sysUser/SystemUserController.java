@@ -1,3 +1,4 @@
+
 package com.datangedu.cn.controller.sysUser;
 
 import java.io.ByteArrayOutputStream;
@@ -64,20 +65,23 @@ public class SystemUserController {
 	 * HashMap<String,Object>(); int orderInfo = sysUserService.
 	 * setOrderUserInfoById(); map.put("orderInfo", orderInfo); return map; }
 	 */
+		/*
+		 * 登陆
+		 */
 		@ResponseBody
 		@RequestMapping(value = "/userlogin",method =RequestMethod.POST)
-		public Map<String,Object>Userlogin(HttpServletRequest request){
+		public Map<String,Object>setUserlogin(HttpServletRequest request){
 			HttpSession session=request.getSession();
 			Map<String,Object> map = new HashMap<String,Object>();
-			List<Administrator>Administrator=sysUserService.setUserlogin(request);
+			List<Administrator>list=sysUserService.setUserlogin(request);
 		
-			if(request.getParameter("cellphone").length() == 0) {
+			if(request.getParameter("cellphone").length()==0) {
 				map.put("adm", "手机号不能为空");
-			}else if(request.getParameter("cellphone").length() == 0) {
+			}else if(request.getParameter("password").length()==0) {
 				map.put("adm", "密码不能为空");
-			}else if(Administrator == null) {
+			}else if(list == null) {
 				map.put("adm", "请输入正确的手机号或密码");
-			}else if(request.getParameter("inputCode").length() == 0) {
+			}else if(request.getParameter("inputCode").length()==0) {
 				map.put("adm", "验证码不能为空");
 			}else if(!request.getParameter("inputCode").equalsIgnoreCase((String) session.getAttribute("code"))) {
 				map.put("adm", "请输入正确的验证码 ");
@@ -88,6 +92,9 @@ public class SystemUserController {
 			
 			return map;
 		}
+		/*
+		 * 注册
+		 */
 		@ResponseBody
 		@RequestMapping(value="/userregister",method=RequestMethod.POST)
 		public Map<String,Object> userregister(HttpServletRequest request){
@@ -145,17 +152,6 @@ public class SystemUserController {
 					map.put("adm","修改密码成功");
 				}
 			}
-			return map;
-		}
-		
-
-		@ResponseBody
-		@RequestMapping(value="/number",method=RequestMethod.POST)
-		public Map<String,Object> number(HttpServletRequest request){
-			Map<String,Object> map=new HashMap<String,Object>();
-			int code =sysUserService.Setusernumber(request);
-			System.out.println(code);
-			map.put("code",1);
 			return map;
 		}
 		
