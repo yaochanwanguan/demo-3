@@ -18,11 +18,15 @@ public interface ProviderImgMapper {
 
     List<ProviderImg> selectByExampleWithBLOBs(ProviderImgExample example);
 
-    List<ProviderImg> selectByExample(ProviderImgExample example);
+    List<ProviderImg> selectByExample(ProviderImgMapper providerImgMapper);
 
     int updateByExampleSelective(@Param("record") ProviderImg record, @Param("example") ProviderImgExample example);
 
     int updateByExampleWithBLOBs(@Param("record") ProviderImg record, @Param("example") ProviderImgExample example);
 
     int updateByExample(@Param("record") ProviderImg record, @Param("example") ProviderImgExample example);
+
+	int updateByNum(ProviderImg record);
+
+	int selectAll();
 }

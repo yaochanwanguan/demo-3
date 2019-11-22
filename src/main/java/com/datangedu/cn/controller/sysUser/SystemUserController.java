@@ -5,6 +5,7 @@ import java.io.ByteArrayOutputStream;
 
 
 
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -68,30 +69,39 @@ public class SystemUserController {
 		/*
 		 * 登陆
 		 */
-		@ResponseBody
-		@RequestMapping(value = "/userlogin",method =RequestMethod.POST)
-		public Map<String,Object>setUserlogin(HttpServletRequest request){
-			HttpSession session=request.getSession();
-			Map<String,Object> map = new HashMap<String,Object>();
-			List<Administrator>list=sysUserService.setUserlogin(request);
-		
-			if(request.getParameter("cellphone").length()==0) {
-				map.put("adm", "手机号不能为空");
-			}else if(request.getParameter("password").length()==0) {
-				map.put("adm", "密码不能为空");
-			}else if(list == null) {
-				map.put("adm", "请输入正确的手机号或密码");
-			}else if(request.getParameter("inputCode").length()==0) {
-				map.put("adm", "验证码不能为空");
-			}else if(!request.getParameter("inputCode").equalsIgnoreCase((String) session.getAttribute("code"))) {
-				map.put("adm", "请输入正确的验证码 ");
-			}else {
-				
-				map.put("adm", "登陆成功");
-			}
-			
-			return map;
-		}
+		 @ResponseBody
+		    @RequestMapping(value = "/userlogin", method = RequestMethod.POST)
+		    public Map<String, Object> setUserlogin(HttpServletRequest request) {
+		        HttpSession session = request.getSession();
+		        Map<String, Object> map = new HashMap<String, Object>();
+
+
+		        if (request.getParameter("cellphone").length() == 0) {
+		            map.put("adm", "手机号不能为空");
+		        } else if (request.getParameter("password").length() == 0) {
+		            map.put("adm", "密码不能为空");
+		        } else if (request.getParameter("inputCode").length() == 0) {
+		            map.put("adm", "验证码不能为空");
+		        } else if (!request.getParameter("inputCode").equalsIgnoreCase((String) session.getAttribute("code"))) {
+		            map.put("adm", "请输入正确的验证码 ");
+		        } else {
+
+		            Administrator administrator = sysUserService.setUserlogin(request);
+		            //请登录正确密码
+		            if (administrator != null) {
+		                map.put("adm", "success");
+							/*request.getSession().setAttribute("user", administrator);
+							System.out.println(session.getAttribute("user").toString());
+							map.put("user",session.getAttribute("user").toString());*/
+		                map.put("user", administrator);
+		            } else {
+		                map.put("adm", "failure");
+		            }
+
+		        }
+
+		        return map;
+		    }
 		/*
 		 * 注册
 		 */
@@ -124,6 +134,10 @@ public class SystemUserController {
 			}
 			return map;
 		}
+		/*
+		 * 
+		 * 忘记密码
+		 */
 		@ResponseBody
 		@RequestMapping(value="/userfind",method=RequestMethod.POST)
 		public Map<String,Object> findpassword(HttpServletRequest request){

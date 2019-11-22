@@ -1,8 +1,7 @@
 package com.datangedu.cn.service.lmpl;
 
 import java.util.List;
-
-
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -61,21 +60,17 @@ public class SysUserServicelmpl implements SysUserService {
 	}
 //登陆
 	@Override
-	public List<Administrator> setUserlogin(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		String cellphone = request.getParameter("cellphone");
-		String password = MD5Util.getMD5(request.getParameter("password").getBytes());
-		String inputCode = request.getParameter("inputCode");
-		/*
-		 * System.out.println("电话号为："+cellphone); System.out.println("密码为："+password);
-		 */
-		AdministratorExample administratorExample = new AdministratorExample();
-		AdministratorExample.Criteria criteria = administratorExample.createCriteria();
-		criteria.andCellphoneEqualTo(cellphone);
-		criteria.andPasswordEqualTo(MD5Util.getMD5(request.getParameter("password").getBytes()));
+    public Administrator setUserlogin(HttpServletRequest request) {
+        String cellphone = request.getParameter("cellphone");
+        String password = MD5Util.getMD5(request.getParameter("password").getBytes());
+        String inputCode = request.getParameter("inputCode");
 
-		return administratorMapper.selectByExample(administratorExample);
-	}
+        AdministratorExample administratorExample = new AdministratorExample();
+        AdministratorExample.Criteria criteria = administratorExample.createCriteria();
+        criteria.andCellphoneEqualTo(cellphone);
+        criteria.andPasswordEqualTo(MD5Util.getMD5(request.getParameter("password").getBytes()));
+        return buyUserMapper.findUser(cellphone, password);
+    }
 	@Override
 	public void saveUserImg(BuyUser user) throws Exception {
 		int i = buyUserMapper.saveUserImg(user);
@@ -121,5 +116,9 @@ public class SysUserServicelmpl implements SysUserService {
 	public BuyUser getUserInfo(String id) {
 		return buyUserMapper.selectByPrimaryKey(id);
 	}
+    @Override
+    public Administrator finUserByMap(Map<String,Object> map) {
+        return buyUserMapper.finUserByMap(map);
+    }
 
 }

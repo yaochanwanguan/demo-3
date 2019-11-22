@@ -19,8 +19,7 @@ public interface AdministratorMapper {
     int insertSelective(Administrator record);
 
     List<Administrator> selectByExampleWithBLOBs(AdministratorExample example);
-
-
+    
     Administrator selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") Administrator record, @Param("example") AdministratorExample example);
