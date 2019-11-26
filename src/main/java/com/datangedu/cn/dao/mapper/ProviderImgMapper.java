@@ -26,7 +26,13 @@ public interface ProviderImgMapper {
 
     int updateByExample(@Param("record") ProviderImg record, @Param("example") ProviderImgExample example);
 
+<<<<<<< HEAD
 	void updateCart(int id,int buy_num);
 	//购物车列表
     List<ProviderImg> findUserCart(String userId);
+=======
+	int updateByNum(ProviderImg record);
+
+	int selectAll();
+>>>>>>> e73093061466a054fd7493cc24cb49c316a8effa
 }

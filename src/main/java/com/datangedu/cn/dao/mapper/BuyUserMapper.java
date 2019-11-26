@@ -1,6 +1,10 @@
 package com.datangedu.cn.dao.mapper;
 
 import com.datangedu.cn.model.sysUser.Administrator;
+<<<<<<< HEAD
+=======
+
+>>>>>>> e73093061466a054fd7493cc24cb49c316a8effa
 import com.datangedu.cn.model.sysUser.BuyUser;
 import com.datangedu.cn.model.sysUser.BuyUserExample;
 import java.util.List;
@@ -40,4 +44,10 @@ public interface BuyUserMapper {
 
 	int saveUserImg(BuyUser user);
 
+<<<<<<< HEAD
+=======
+	Administrator finUserByMap(Map<String, Object> map);
+
+	Administrator findUser(@Param("cellphone")String cellphone, @Param("password")String password);
+>>>>>>> e73093061466a054fd7493cc24cb49c316a8effa
 }

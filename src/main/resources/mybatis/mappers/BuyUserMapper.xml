@@ -226,7 +226,16 @@
     <update id="saveUserImg" parameterType="com.datangedu.cn.model.sysUser.BuyUser">
     update buy_user set head_img = #{headImg} where id = #{id}
 </update>
+<<<<<<< HEAD
 
+=======
+    <select id="findUser" parameterType="java.lang.String" resultType="com.datangedu.cn.model.sysUser.Administrator">
+        SELECT * FROM `administrator`
+        <where>
+            PASSWORD = #{password} and CELLPHONE = #{cellphone}
+        </where>
+    </select>
+>>>>>>> e73093061466a054fd7493cc24cb49c316a8effa
     <update id="updateByExampleSelective" parameterType="map">
         update buy_user
         <set>
@@ -365,6 +374,24 @@
     where ID = #{id,jdbcType=VARCHAR}
   </update>
 
+<<<<<<< HEAD
 
 
+=======
+    <select id="finUserByMap" resultType="com.datangedu.cn.model.sysUser.Administrator">
+        SELECT * FROM `administrator`
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="emall != null and emall != ''">and EMAIL = #{emall}</if>
+            <if test="password != null and password != ''">and PASSWORD = #{password}</if>
+            <if test="cellphone != null and cellphone != ''">and CELLPHONE = #{cellphone}</if>
+        </where>
+    </select>
+
+    <update id="updateUserByMap" parameterType="com.datangedu.cn.model.sysUser.Administrator">
+        update `administrator`
+        set password = #{password},CELLPHONE = #{cellphone}
+        where ID =#{id}
+    </update>
+>>>>>>> e73093061466a054fd7493cc24cb49c316a8effa
 </mapper>
