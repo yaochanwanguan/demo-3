@@ -1,8 +1,8 @@
+var USER;
 $(".login-btn").on("click", function(){
 	var cellphone=$(".cellphone").val();
 	var password=$(".password").val();
 	var inputCode=$(".inputcode").val();
-	console.log(cellphone,password);
 	$.ajax({
 		   type:"post",
 		   url:"/sysuser/userlogin",
@@ -13,16 +13,19 @@ $(".login-btn").on("click", function(){
 		   },
 		   dataType:"json",
 		   success:function(data){
-			   
-			   console.log("成功后返回的数据",data);
-			   if(data.adm=="登陆成功"){
-				  location.href="redirect?page=e-commerce_product.html"
+		       if(data.adm=="success"){
+		           USER = new Object( data.user);
+                   $.cookie("USER",USER.id);
+				   location.href="redirect?page=e-commerce_product.html"
+               }else if(data.adm == "failure"){
+                   alert("登录失败，请重新登陆!(账号或密码错误)");
+				   return;
 			   }else{
-				   alert(data.adm);
-			   }
+		           alert(data.adm);
+               }
 		   }
 	})
-	
+
 })
 $(function(){
 	var time=new Date().getTime();

@@ -3,7 +3,7 @@ package com.datangedu.cn.model.sysUser;
 import java.util.Date;
 
 public class OrderList {
-    private String id;
+    private int id;
 
     private String orderNumber;
 
@@ -11,9 +11,13 @@ public class OrderList {
 
     private String orderContent;
 
-    private String orderMount;
+    private Integer buySum;
 
-    private Date createTime;
+    private String img;
+
+    private Double orderMount;
+
+    private String createTime;
 
     private Integer payType;
 
@@ -21,12 +25,12 @@ public class OrderList {
 
     private String evaluate;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getOrderNumber() {
@@ -34,7 +38,7 @@ public class OrderList {
     }
 
     public void setOrderNumber(String orderNumber) {
-        this.orderNumber = orderNumber == null ? null : orderNumber.trim();
+        this.orderNumber = orderNumber;
     }
 
     public String getUserBuy() {
@@ -42,7 +46,7 @@ public class OrderList {
     }
 
     public void setUserBuy(String userBuy) {
-        this.userBuy = userBuy == null ? null : userBuy.trim();
+        this.userBuy = userBuy;
     }
 
     public String getOrderContent() {
@@ -50,22 +54,38 @@ public class OrderList {
     }
 
     public void setOrderContent(String orderContent) {
-        this.orderContent = orderContent == null ? null : orderContent.trim();
+        this.orderContent = orderContent;
     }
 
-    public String getOrderMount() {
+    public Integer getBuySum() {
+        return buySum;
+    }
+
+    public void setBuySum(Integer buySum) {
+        this.buySum = buySum;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public Double getOrderMount() {
         return orderMount;
     }
 
-    public void setOrderMount(String orderMount) {
-        this.orderMount = orderMount == null ? null : orderMount.trim();
+    public void setOrderMount(Double orderMount) {
+        this.orderMount = orderMount;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
@@ -90,6 +110,6 @@ public class OrderList {
     }
 
     public void setEvaluate(String evaluate) {
-        this.evaluate = evaluate == null ? null : evaluate.trim();
+        this.evaluate = evaluate;
     }
 }

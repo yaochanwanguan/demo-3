@@ -23,6 +23,9 @@ public class ServingProductServiceImpl implements ServingProductService{
 		ServingProductExample.Criteria criteria=servingProductExample.createCriteria();
 		return servingProductMapper.selectByExample(servingProductExample);
 }
-	
 
+    @Override
+    public List<ServingProduct> queryAll() {
+        return servingProductMapper.selectByExample(null);
+    }
 }

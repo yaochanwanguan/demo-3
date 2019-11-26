@@ -1,18 +1,19 @@
 package com.datangedu.cn.service.lmpl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
+import com.datangedu.cn.dao.mapper.AdministratorMapper;
+import com.datangedu.cn.model.sysUser.*;
 import org.springframework.stereotype.Service;
 
 import com.datangedu.cn.dao.mapper.ProviderImgMapper;
 import com.datangedu.cn.dao.mapper.ServingProductMapper;
-import com.datangedu.cn.model.sysUser.ProviderImg;
-import com.datangedu.cn.model.sysUser.ProviderImgExample;
-import com.datangedu.cn.model.sysUser.ServingProduct;
-import com.datangedu.cn.model.sysUser.ServingProductExample;
 import com.datangedu.cn.service.CartService;
 @Service
 public class CartServicelmpl implements CartService{
@@ -20,16 +21,19 @@ public class CartServicelmpl implements CartService{
 ProviderImgMapper providerImgMapper;
 @Resource
 ServingProductMapper servingProductMapper;
+@Resource
+AdministratorMapper administratorMapper;
 ////
 //	购物车列表
 ////
 	@Override
 	public List<ProviderImg> getuserCart(String id) {
-		System.out.println("Cart start");
+		/*System.out.println("Cart start");
 		ProviderImgExample providerImgExample=new ProviderImgExample();
 		ProviderImgExample.Criteria criteria=providerImgExample.createCriteria();
 		criteria.andIdEqualTo(id);
-		return providerImgMapper.selectByExample(null);
+		return providerImgMapper.selectByExample(providerImgMapper);*/
+		return providerImgMapper.findUserCart(id);
 	}
 //	购物车添加商品
 	@Override
@@ -38,13 +42,21 @@ ServingProductMapper servingProductMapper;
 		ServingProductExample servingProductExample=new ServingProductExample();
 		ServingProductExample.Criteria criteria=servingProductExample.createCriteria();
 		criteria.andIdEqualTo(id);
+		Map where = new HashMap();
+		where.put("id",spId);
+		Administrator administrator = administratorMapper.finUserByMap(where);
 		List<ServingProduct>list=servingProductMapper.selectByExample(servingProductExample);
 		ProviderImg providerImg=new ProviderImg();
-		providerImg.setServiceId(list.get(0).getId());
-		providerImg.setId(id);
-		providerImg.setServiceName(list.get(0).getServiceName());
-		providerImg.setUnitPrice(list.get(0).getUnitPrice());
-		providerImg.setProviderName(list.get(0).getProviderName());
+		providerImg.setService_id(id);
+		//providerImg.setId(id);
+		providerImg.setService_name(list.get(0).getServiceName());
+		providerImg.setUnit_price(list.get(0).getUnitPrice());
+		providerImg.setProvider_name(list.get(0).getProviderName());
+		providerImg.setBuy_num(1);
+		providerImg.setUser_id(spId);
+		providerImg.setSum(1);
+		providerImg.setUser_name(administrator.getUserName());
+		providerImg.setProduct_picture(list.get(0).getProductPicture());
 		return providerImgMapper.insert(providerImg);
 	}
 
@@ -56,6 +68,29 @@ ProviderImgExample.Criteria criteria=providerImgExample.createCriteria();
 criteria.andProviderNameEqualTo(providerName);
 criteria.andIdEqualTo(id);
 return providerImgMapper.selectByExample(null);
+}
+//购物车删除
+@Override
+public int getDelCart(HttpServletRequest request, String serviceId) {
+	return providerImgMapper.deleteByExample(serviceId);
+}
+/*
+ *产品数量改变
+ */
+@Override
+public List<ProviderImg> getReduceNum(HttpServletRequest request, String serviceId) {
+	ProviderImgExample providerImgExample = new ProviderImgExample();
+	ProviderImgExample.Criteria criteria = providerImgExample.createCriteria();
+	criteria.andServiceIdEqualTo(serviceId);
+	return providerImgMapper.selectByExample(providerImgMapper);
+}
+
+
+//修改购物车数量
+	@Override
+public int updateCart(int id ,int buy_num){
+		providerImgMapper.updateCart(id,buy_num);
+	return 1;
 }
 
 }

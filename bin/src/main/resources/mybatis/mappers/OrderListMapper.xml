@@ -2,15 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.datangedu.cn.dao.mapper.OrderListMapper">
   <resultMap id="BaseResultMap" type="com.datangedu.cn.model.sysUser.OrderList">
-    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <id column="ID" jdbcType="INTEGER" property="id" />
     <result column="ORDER_NUMBER" jdbcType="VARCHAR" property="orderNumber" />
     <result column="USER_BUY" jdbcType="VARCHAR" property="userBuy" />
     <result column="ORDER_CONTENT" jdbcType="VARCHAR" property="orderContent" />
-    <result column="ORDER_MOUNT" jdbcType="VARCHAR" property="orderMount" />
-    <result column="CREATE_TIME" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="ORDER_MOUNT" jdbcType="DOUBLE" property="orderMount" />
+    <result column="CREATE_TIME" jdbcType="DATETIME" property="createTime" />
     <result column="PAY_TYPE" jdbcType="INTEGER" property="payType" />
     <result column="STATUS" jdbcType="INTEGER" property="status" />
     <result column="EVALUATE" jdbcType="VARCHAR" property="evaluate" />
+    <result column="BUYSUM" jdbcType="INTEGER" property="buySum"></result>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -92,11 +93,11 @@
     select 
     <include refid="Base_Column_List" />
     from order_list
-    where ID = #{id,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from order_list
-    where ID = #{id,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.datangedu.cn.model.sysUser.OrderListExample">
     delete from order_list
@@ -105,12 +106,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.datangedu.cn.model.sysUser.OrderList">
-    insert into order_list (ID, ORDER_NUMBER, USER_BUY, 
-      ORDER_CONTENT, ORDER_MOUNT, CREATE_TIME, 
+    insert into order_list (ORDER_NUMBER, USER_BUY,
+      ORDER_CONTENT, ORDER_MOUNT,
       PAY_TYPE, STATUS, EVALUATE
       )
-    values (#{id,jdbcType=VARCHAR}, #{orderNumber,jdbcType=VARCHAR}, #{userBuy,jdbcType=VARCHAR}, 
-      #{orderContent,jdbcType=VARCHAR}, #{orderMount,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+    values (#{orderNumber,jdbcType=VARCHAR}, #{userBuy,jdbcType=VARCHAR},
+      #{orderContent,jdbcType=VARCHAR}, #{orderMount,jdbcType=DOUBLE},
       #{payType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{evaluate,jdbcType=VARCHAR}
       )
   </insert>
@@ -147,7 +148,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=VARCHAR},
+        #{id,jdbcType=INTEGER},
       </if>
       <if test="orderNumber != null">
         #{orderNumber,jdbcType=VARCHAR},
@@ -185,7 +186,7 @@
     update order_list
     <set>
       <if test="record.id != null">
-        ID = #{record.id,jdbcType=VARCHAR},
+        ID = #{record.id,jdbcType=INTEGER},
       </if>
       <if test="record.orderNumber != null">
         ORDER_NUMBER = #{record.orderNumber,jdbcType=VARCHAR},
@@ -218,7 +219,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update order_list
-    set ID = #{record.id,jdbcType=VARCHAR},
+    set ID = #{record.id,jdbcType=INTEGER},
       ORDER_NUMBER = #{record.orderNumber,jdbcType=VARCHAR},
       USER_BUY = #{record.userBuy,jdbcType=VARCHAR},
       ORDER_CONTENT = #{record.orderContent,jdbcType=VARCHAR},
@@ -259,7 +260,7 @@
         EVALUATE = #{evaluate,jdbcType=VARCHAR},
       </if>
     </set>
-    where ID = #{id,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.datangedu.cn.model.sysUser.OrderList">
     update order_list
@@ -271,6 +272,6 @@
       PAY_TYPE = #{payType,jdbcType=INTEGER},
       STATUS = #{status,jdbcType=INTEGER},
       EVALUATE = #{evaluate,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
 public interface ProviderImgMapper {
     long countByExample(ProviderImgExample example);
 
-    int deleteByExample(ProviderImgExample example);
+    int deleteByExample(String id);
 
     int insert(ProviderImg record);
 
@@ -18,11 +18,15 @@ public interface ProviderImgMapper {
 
     List<ProviderImg> selectByExampleWithBLOBs(ProviderImgExample example);
 
-    List<ProviderImg> selectByExample(ProviderImgExample example);
+    List<ProviderImg> selectByExample(ProviderImgMapper providerImgMapper);
 
     int updateByExampleSelective(@Param("record") ProviderImg record, @Param("example") ProviderImgExample example);
 
     int updateByExampleWithBLOBs(@Param("record") ProviderImg record, @Param("example") ProviderImgExample example);
 
     int updateByExample(@Param("record") ProviderImg record, @Param("example") ProviderImgExample example);
+
+	void updateCart(int id,int buy_num);
+	//购物车列表
+    List<ProviderImg> findUserCart(String userId);
 }

@@ -13,7 +13,7 @@ public interface OrderListMapper {
 
     int deleteByExample(OrderListExample example);
 
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(int id);
 
     int insert(OrderList record);
 
@@ -21,7 +21,7 @@ public interface OrderListMapper {
 
     List<OrderList> selectByExample(OrderListExample example);
 
-    OrderList selectByPrimaryKey(String id);
+    OrderList selectByPrimaryKey(int id);
 
     int updateByExampleSelective(@Param("record") OrderList record, @Param("example") OrderListExample example);
 
@@ -30,4 +30,8 @@ public interface OrderListMapper {
     int updateByPrimaryKeySelective(OrderList record);
 
     int updateByPrimaryKey(OrderList record);
+
+    void updateOrder(OrderList orderList);
+
+    List<OrderList> queryAll(String userName);
 }

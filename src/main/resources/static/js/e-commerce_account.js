@@ -6,7 +6,37 @@ $(".search-service").on("click", function () {
     $(".search-service").addClass("font-aqua");
     $(".search-product").removeClass("font-aqua");
 })
-
+/*$(".login-btn .font-aqua").on("click",function () {
+    var newpassword = $(".newpassword").val();
+    var renewpassword=$(".renewpassword").val();
+    var id = $.cookie("USER")
+    if(newpassword == renewpassword){
+        $.ajax({
+            type:"post",
+            url:"/sysuser/updateUser",
+            data:{
+                id:id,
+                querenpassword:renewpassword,
+            },
+            dataType:"json",
+            success:function(data){
+                console.log("成功返回的数据",data);
+                if(data.adm == "用户设置成功"){
+                    location.href="redirect?page=e-commerce_login";
+                    alert("用户设置成功");
+                }else{
+                    alert(data.adm);
+                }
+            }
+        })
+    }else{
+        alert("密码不一致，请重新输入！");
+    }
+})*/
+$(function(){
+    var time=new Date().getTime();
+    $(".codeimg").attr("src","imgGetCode?t="+time);
+})
 $(".banner a").on("click", function (event) {
     $(".banner a").removeClass("border-b");
     $(event.target).addClass("border-b");

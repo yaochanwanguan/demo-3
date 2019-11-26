@@ -4,13 +4,12 @@ import java.util.List;
 
 
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.stereotype.Service;
+import javax.annotation.Resource;
 
 import com.datangedu.cn.dao.mapper.RegionMapper;
-import com.datangedu.cn.model.sysUser.AdministratorExample;
+import org.springframework.stereotype.Service;
+
 import com.datangedu.cn.model.sysUser.Region;
 import com.datangedu.cn.model.sysUser.RegionExample;
 import com.datangedu.cn.service.RegionService;

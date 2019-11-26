@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/css/e-commerce_account.css">
 
     <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="./js/jquery.cookie.js"></script>
 </head>
 
 <body>
@@ -77,15 +78,15 @@
             <ul class="change-password">
                 <li>
                     <span>旧密码：</span>
-                    <input type="text" />
+                    <input type="text" class="password" />
                 </li>
                 <li>
                     <span>新密码：</span>
-                    <input type="text" />
+                    <input type="text" class="newpassword" />
                 </li>
                 <li>
                     <span>再次输入新密码：</span>
-                    <input type="text" />
+                    <input type="text" class="renewpassword" />
                 </li>
                 <li>
                      <p class="login-btn font-aqua">确认修改</p>

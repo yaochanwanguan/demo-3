@@ -3,62 +3,64 @@ package com.datangedu.cn.model.sysUser;
 public class ProviderImg {
     private String id;
 
-    private String serviceId;
+    private String service_id;
 
-    private Integer buyNum;
+    private Integer buy_num;
 
-    private String serviceName;
+    private String service_name;
 
-    private Integer unitPrice;
+    private Integer unit_price;
 
     private Integer sum;
 
-    private String providerId;
+    private String provider_id;
 
-    private String providerName;
+    private String provider_name;
 
-    private String userName;
+    private String user_name;
 
-    private byte[] productPicture;
+    private String user_id;
+
+    private String product_picture;
 
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+        this.id = id;
     }
 
-    public String getServiceId() {
-        return serviceId;
+    public String getService_id() {
+        return service_id;
     }
 
-    public void setServiceId(String serviceId) {
-        this.serviceId = serviceId == null ? null : serviceId.trim();
+    public void setService_id(String service_id) {
+        this.service_id = service_id;
     }
 
-    public Integer getBuyNum() {
-        return buyNum;
+    public Integer getBuy_num() {
+        return buy_num;
     }
 
-    public void setBuyNum(Integer buyNum) {
-        this.buyNum = buyNum;
+    public void setBuy_num(Integer buy_num) {
+        this.buy_num = buy_num;
     }
 
-    public String getServiceName() {
-        return serviceName;
+    public String getService_name() {
+        return service_name;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName == null ? null : serviceName.trim();
+    public void setService_name(String service_name) {
+        this.service_name = service_name;
     }
 
-    public Integer getUnitPrice() {
-        return unitPrice;
+    public Integer getUnit_price() {
+        return unit_price;
     }
 
-    public void setUnitPrice(Integer unitPrice) {
-        this.unitPrice = unitPrice;
+    public void setUnit_price(Integer unit_price) {
+        this.unit_price = unit_price;
     }
 
     public Integer getSum() {
@@ -69,35 +71,43 @@ public class ProviderImg {
         this.sum = sum;
     }
 
-    public String getProviderId() {
-        return providerId;
+    public String getProvider_id() {
+        return provider_id;
     }
 
-    public void setProviderId(String providerId) {
-        this.providerId = providerId == null ? null : providerId.trim();
+    public void setProvider_id(String provider_id) {
+        this.provider_id = provider_id;
     }
 
-    public String getProviderName() {
-        return providerName;
+    public String getProvider_name() {
+        return provider_name;
     }
 
-    public void setProviderName(String providerName) {
-        this.providerName = providerName == null ? null : providerName.trim();
+    public void setProvider_name(String provider_name) {
+        this.provider_name = provider_name;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
     }
 
-    public byte[] getProductPicture() {
-        return productPicture;
+    public String getUser_id() {
+        return user_id;
     }
 
-    public void setProductPicture(byte[] productPicture) {
-        this.productPicture = productPicture;
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getProduct_picture() {
+        return product_picture;
+    }
+
+    public void setProduct_picture(String product_picture) {
+        this.product_picture = product_picture;
     }
 }

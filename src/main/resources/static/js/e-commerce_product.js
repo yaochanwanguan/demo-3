@@ -17,19 +17,20 @@ $(".content-nav li").on("click", function(event){
     $(event.target).addClass("nav-active");
 })
 
-$(".border-b").on("click", function () {
+$(function () {
+	 /*$("#userName").value(USER)*/
 	$.ajax({
 		   type:"get",
 	       url:"/ServingProduct/ServingProductlist",
 	   dataType:"json",
 	   success:function(data){
 		   console.log("成功返回数据",data);
-		   var ServingProductList = data.ServingProductList
+		   var ServingProductList = data;
 		   var txt="";
 		  //date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate()
-		   for(var i=0;i<ServingProductList.length;i++){
-			   txt +=`<div class="article">
-            <img src="" alt="图片" />
+           for(var i=0;i<ServingProductList.length;i++){
+               txt +=`<div class="article">
+            <img src="${ServingProductList[i].productPicture}" alt="图片" />
             <ul class="article-info">
                 <li>${ServingProductList[i].serviceName}</li>
                 <li>${ServingProductList[i].serviceInfo}</li>
@@ -44,9 +45,9 @@ $(".border-b").on("click", function () {
             </ul>
         </div>
         <hr color="#ededed" size="1">`;
-			   
-			   
-		   }
+
+
+           }
 		   $(".content").html(txt);
 	   },
 	   error:function(data){
@@ -55,8 +56,9 @@ $(".border-b").on("click", function () {
 	   })
 
 })
+//加入购物车
 function cartadd(serviceId){
-	var id = sessionStorage.getItem("id");
+	var id = $.cookie("USER");
 	console.log("添加商品 ：",serviceId);
 	$.ajax({
 		type:"get",
@@ -67,7 +69,19 @@ function cartadd(serviceId){
 					}, 
 					dataType:"json",
 					success:function(data){
-						
+						console.log("成功返回的数据",data);
+						$.ajax({
+							type:"get",
+							url:"/ServingProduct/ServingProductlist",
+							dataType:"json",
+							 success:function(data){
+								   console.log("成功返回数据",data);
+								   alert("添加成功")
+							   },
+							   error:function(data){
+								   console.log("失败返回数据",data);
+								}
+						})
 					}
 	})
 }

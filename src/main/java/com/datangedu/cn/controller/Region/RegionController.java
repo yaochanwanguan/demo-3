@@ -2,6 +2,7 @@ package com.datangedu.cn.controller.Region;
 
 import java.util.HashMap;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -60,8 +61,4 @@ public class RegionController {
 		System.out.println("区id=="+area.get(0).getId());
 		return map;
 	}
-	
-	
-
-
 }

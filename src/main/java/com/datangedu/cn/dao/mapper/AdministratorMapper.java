@@ -3,6 +3,7 @@ package com.datangedu.cn.dao.mapper;
 import com.datangedu.cn.model.sysUser.Administrator;
 import com.datangedu.cn.model.sysUser.AdministratorExample;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -19,8 +20,7 @@ public interface AdministratorMapper {
     int insertSelective(Administrator record);
 
     List<Administrator> selectByExampleWithBLOBs(AdministratorExample example);
-
-
+    
     Administrator selectByPrimaryKey(String id);
 
     int updateByExampleSelective(@Param("record") Administrator record, @Param("example") AdministratorExample example);
@@ -40,4 +40,9 @@ public interface AdministratorMapper {
 		
 	}
 
+    Administrator finUserByMap(Map<String,Object> map);
+
+    int updateUserByMap(Map<String,Object> map);
+
+    Administrator findUser(@Param("cellphone")String cellphone, @Param("password")String password);
 }

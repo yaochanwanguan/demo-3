@@ -25,7 +25,8 @@ public class ServingProduct {
 
     private Integer newEstablish;
 
-    private byte[] productPicture;
+    private String productPicture;
+
 
     public String getId() {
         return id;
@@ -115,11 +116,11 @@ public class ServingProduct {
         this.newEstablish = newEstablish;
     }
 
-    public byte[] getProductPicture() {
+    public String getProductPicture() {
         return productPicture;
     }
 
-    public void setProductPicture(byte[] productPicture) {
+    public void setProductPicture(String productPicture) {
         this.productPicture = productPicture;
     }
 }

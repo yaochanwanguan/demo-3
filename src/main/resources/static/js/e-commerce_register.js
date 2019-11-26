@@ -1,4 +1,3 @@
-
 $(".login-btn").on("click", function(){
 		var user_name = $(".user_name").val();
 		var cellphone = $(".cellphone").val();
@@ -30,7 +29,7 @@ $(".login-btn").on("click", function(){
 				password:password,
 				province:province,
 				city:city,
-				area:area,
+				area:area
 			},
 			dataType:"json",
 			success:function(data){
@@ -57,8 +56,7 @@ $(".login-btn").on("click", function(){
 			txt="";
 			txt +=`<option value="">省</option>`
 			for(var i = 0;i<province.length;i++){
-				txt +=`
-                        <option onclick="provinceId('${province[i].id}')"  value="${province[i].id}">${province[i].name}</option>`
+				txt +=`<option onclick="provinceId('${province[i].id}')"  value="${province[i].id}">${province[i].name}</option>`
 			}
 			$("#province").append(txt);
 			$("#city").html("");

@@ -1,7 +1,6 @@
 package com.datangedu.cn.service;
 import java.util.List;
-
-
+import java.util.Map;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,11 +14,14 @@ public interface SysUserService {
 	//public List<Administrator> getUserInfoById();
 	public List<OrderList> getOrderUserInfoById();
 	int setOrderUserInfoById();
-	public List<Administrator> setUserlogin(HttpServletRequest request);
+	public Administrator setUserlogin(HttpServletRequest request);
 	public void saveUserImg(BuyUser user) throws Exception;
 	public int setUserRegion(HttpServletRequest request);
 	public List<Administrator> findpassword(HttpServletRequest request);
 	public BuyUser getUserInfo(String id);
+	//找用户
+	Administrator finUserByMap (Map<String,Object> map);
+	int updateUserByMap(Map<String,Object> map);
 
 }
  

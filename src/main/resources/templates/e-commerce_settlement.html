@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./css/e-commerce_settlement.css">
 
     <script src="./js/jquery-3.4.1.min.js"></script>
+
 </head>
 
 <body>
@@ -19,28 +20,27 @@
         <hr color="#ededed" size="1">
         <ul class="merchandise">
             <li>
-                订单编号：<span class="font-aqua">S170604003104018018</span>
+                订单编号：<span class="font-aqua" id="orderNumber">S170604003104018018</span>
             </li>
-            <li>创建时间：2017-08-18 22:21:23</li>
-            <li>订单明细：代理记账（一年）*1</li>
-            <li>订单总额：¥500.00</li>
+            <li>创建时间<span id="createTime">2017-08-18 22:21:23</span></li>
+            <li>订单明细：<span id="pNum">代理记账（一年）*1</span>件商品</li>
+            <li>订单总额：<span class="money">¥500.00</span></li>
         </ul>
         <p class="product_num font-aqua">支付方式</p>
         <hr color="#ededed" size="1">
         <p class="font-size14">非网银支付</p>
         <img src="./images/yinlian.png" alt="">
-        <input class="radio radio1" type="radio" name="pay">
+        <input class="radio radio1" type="radio" value="银联电子支付" name="pay">
         <p class="font-size14">平台支付</p>
         <img src="./images/weixin.png" alt="">
-        <input class="radio radio2" type="radio" name="pay">
+        <input class="radio radio2" type="radio"  value="微信" name="pay">
         <img src="./images/zhifubao.png" alt="">
-        <input class="radio radio3" type="radio" name="pay">
+        <input class="radio radio3" type="radio" name="pay" value="支付宝">
         <ul class="payment">
-            <li>金额总计：<span>¥10000.00</span></li>
-            <li>支付</li>
+            <li>金额总计：<span class="money">¥10000.00</span></li>
+            <li onclick="zf()">支付</li>
         </ul>
     </div>
     <script src="./js/e-commerce_settlement.js"></script>
 </body>
-
 </html>

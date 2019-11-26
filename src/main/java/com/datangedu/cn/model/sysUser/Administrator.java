@@ -1,5 +1,6 @@
 package com.datangedu.cn.model.sysUser;
 
+import java.util.Arrays;
 import java.util.Date;
 
 public class Administrator {
@@ -32,7 +33,7 @@ public class Administrator {
     }
 
     public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+        this.id = id;
     }
 
     public String getUserName() {
@@ -40,7 +41,7 @@ public class Administrator {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -48,7 +49,7 @@ public class Administrator {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
     }
 
     public String getEmail() {
@@ -56,7 +57,7 @@ public class Administrator {
     }
 
     public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
+        this.email = email;
     }
 
     public String getCellphone() {
@@ -64,7 +65,7 @@ public class Administrator {
     }
 
     public void setCellphone(String cellphone) {
-        this.cellphone = cellphone == null ? null : cellphone.trim();
+        this.cellphone = cellphone;
     }
 
     public Integer getStatus() {
@@ -88,7 +89,7 @@ public class Administrator {
     }
 
     public void setProvince(String province) {
-        this.province = province == null ? null : province.trim();
+        this.province = province;
     }
 
     public String getCity() {
@@ -96,7 +97,7 @@ public class Administrator {
     }
 
     public void setCity(String city) {
-        this.city = city == null ? null : city.trim();
+        this.city = city;
     }
 
     public String getArea() {
@@ -104,7 +105,7 @@ public class Administrator {
     }
 
     public void setArea(String area) {
-        this.area = area == null ? null : area.trim();
+        this.area = area;
     }
 
     public String getQurenpassword() {
@@ -112,7 +113,7 @@ public class Administrator {
     }
 
     public void setQurenpassword(String qurenpassword) {
-        this.qurenpassword = qurenpassword == null ? null : qurenpassword.trim();
+        this.qurenpassword = qurenpassword;
     }
 
     public byte[] getHeadImg() {
@@ -121,5 +122,23 @@ public class Administrator {
 
     public void setHeadImg(byte[] headImg) {
         this.headImg = headImg;
+    }
+
+    @Override
+    public String toString() {
+        return "Administrator{" +
+                "id='" + id + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", cellphone='" + cellphone + '\'' +
+                ", status=" + status +
+                ", registerTime=" + registerTime +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", area='" + area + '\'' +
+                ", qurenpassword='" + qurenpassword + '\'' +
+                ", headImg=" + Arrays.toString(headImg) +
+                '}';
     }
 }

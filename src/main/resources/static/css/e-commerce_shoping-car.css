@@ -125,6 +125,7 @@
 }
 .merchandise li{
     width: 200px;
+    display:inline;
     text-align: center;
     line-height: 28px;
     line-height: 68px;
@@ -166,4 +167,8 @@
     color: #4eb5ba;
     border: 1px solid #4eb5ba;
     border-radius: 3px;
+}
+
+select input{
+    width: 90px;
 }

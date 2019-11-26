@@ -1,4 +1,4 @@
-$(".login-btn").on("click", function(){
+$(".login-btn font-aqua").on("click", function(){
 		var cellphone = $(".cellphone").val();
 		var inputCode = $(".inputcode").val();
 		var password = $(".password").val();

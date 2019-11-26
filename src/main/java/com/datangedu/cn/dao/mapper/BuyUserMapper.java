@@ -1,8 +1,10 @@
 package com.datangedu.cn.dao.mapper;
 
+import com.datangedu.cn.model.sysUser.Administrator;
 import com.datangedu.cn.model.sysUser.BuyUser;
 import com.datangedu.cn.model.sysUser.BuyUserExample;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -37,4 +39,5 @@ public interface BuyUserMapper {
     int updateByPrimaryKey(BuyUser record);
 
 	int saveUserImg(BuyUser user);
+
 }

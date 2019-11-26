@@ -11,5 +11,6 @@ public interface ServingProductService {
 
 
 	public List<ServingProduct> getServingProductList(HttpServletRequest request);
-	
+
+	List<ServingProduct> queryAll();
 }

@@ -25,12 +25,12 @@ public class ServingProductController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/ServingProductlist",method = RequestMethod.GET)
-	public Map<String,Object> ServingProductList(HttpServletRequest request){
+	public List ServingProductList(HttpServletRequest request){
 		System.out.println("providerProdutList start");
 		//HttpSession session =  request.getSession();
 		Map<String,Object> map = new HashMap<String,Object>();
-		List<ServingProduct> ServingProductList = servingProductService.getServingProductList(request);
-		map.put("ServingProductList", ServingProductList);
-		return map;
+		List<ServingProduct> ServingProductList = servingProductService.queryAll();
+		System.out.println(ServingProductList);
+		return ServingProductList;
 	}
 }

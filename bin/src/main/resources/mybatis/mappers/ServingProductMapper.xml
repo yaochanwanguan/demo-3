@@ -77,6 +77,9 @@
     ID, SERVICE_NAME, SERVICE_INFO, UNIT_PRICE, SALES_VOLUME, STATUS, CREATE_TIME, PROVIDER_ID, 
     PROVIDER_NAME, RECOMMEND, NEW_ESTABLISH, PRODUCT_PICTURE
   </sql>
+
+
+
   <select id="selectByExample" parameterType="com.datangedu.cn.model.sysUser.ServingProductExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
